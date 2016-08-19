@@ -1,0 +1,16 @@
+/*******************************
+ Login Page CSS
+*******************************/
+
+#login .ui.grid {
+    height: 100%;
+    padding-top: 60px;
+}
+
+#login .ui.grid > .column {
+    max-width: 360px;
+}
+
+#login .ui.header {
+    margin-bottom: 60px;
+}

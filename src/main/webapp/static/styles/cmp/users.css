@@ -1,0 +1,7 @@
+/*******************************
+ Users Page CSS
+*******************************/
+
+.ui.primary.action.modal>.content {
+    min-height: 240px;
+}

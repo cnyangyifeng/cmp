@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cnmengma.mapper.CategoryMapper">
+
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+
+    <select id="find" resultType="Category">
+        SELECT
+        CMP_CATEGORY.CMP_CATEGORY_ID AS categoryId,
+        CMP_CATEGORY.CMP_CATEGORY_NAME AS categoryName,
+        CMP_CATEGORY.CMP_SERIAL_NUMBER AS serialNumber
+        FROM CMP_CATEGORY
+        ORDER BY CMP_CATEGORY.CMP_SERIAL_NUMBER ASC
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="findById" resultType="Category">
+        SELECT
+        CMP_CATEGORY.CMP_CATEGORY_ID AS categoryId,
+        CMP_CATEGORY.CMP_CATEGORY_NAME AS categoryName,
+        CMP_CATEGORY.CMP_SERIAL_NUMBER AS serialNumber
+        FROM CMP_CATEGORY
+        WHERE
+        CMP_CATEGORY.CMP_CATEGORY_ID = #{categoryId}
+    </select>
+
+    <insert id="create" parameterType="Category">
+        INSERT
+        INTO CMP_CATEGORY (
+        CMP_CATEGORY.CMP_CATEGORY_NAME,
+        CMP_CATEGORY.CMP_SERIAL_NUMBER
+        ) VALUES (
+        #{categoryName},
+        #{serialNumber}
+        )
+    </insert>
+
+    <update id="update" parameterType="Category">
+        UPDATE
+        CMP_CATEGORY
+        SET
+        CMP_CATEGORY.CMP_CATEGORY_NAME = #{categoryName},
+        CMP_CATEGORY.CMP_SERIAL_NUMBER = #{serialNumber}
+        WHERE
+        <if test="categoryId != null">
+            CMP_CATEGORY.CMP_CATEGORY_ID = #{categoryId}
+        </if>
+    </update>
+
+    <delete id="deleteByIds">
+        DELETE
+        FROM CMP_CATEGORY
+        WHERE
+        CMP_CATEGORY.CMP_CATEGORY_ID
+        IN
+        <foreach collection="array" item="categoryId" open="(" separator="," close=")">
+            #{categoryId}
+        </foreach>
+
+    </delete>
+
+    <delete id="deleteById">
+        DELETE
+        FROM CMP_CATEGORY
+        WHERE
+        CMP_CATEGORY.CMP_CATEGORY_ID = #{categoryId}
+    </delete>
+
+    <select id="searchByName" resultType="Category">
+        SELECT
+        CMP_CATEGORY.CMP_CATEGORY_ID AS categoryId,
+        CMP_CATEGORY.CMP_CATEGORY_NAME AS categoryName,
+        CMP_CATEGORY.CMP_SERIAL_NUMBER AS serialNumber
+        FROM CMP_CATEGORY
+        WHERE
+        CMP_CATEGORY.CMP_CATEGORY_NAME LIKE "%"#{q}"%"
+        ORDER BY CMP_CATEGORY.CMP_SERIAL_NUMBER ASC
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="findCount" resultType="int">
+        SELECT
+        COUNT(*)
+        FROM CMP_CATEGORY
+    </select>
+
+    <select id="searchByNameCount" resultType="int">
+        SELECT
+        COUNT(*)
+        FROM CMP_CATEGORY
+        WHERE
+        CMP_CATEGORY.CMP_CATEGORY_NAME LIKE "%"#{q}"%"
+    </select>
+
+</mapper>

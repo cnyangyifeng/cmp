@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
+
+    <context:property-placeholder location="classpath:db_mysql.properties"/>
+
+    <!-- Enables component scanning and autowire, but beware that this does not enable mapper scanning -->
+
+    <context:component-scan base-package="com.cnmengma.service"/>
+
+    <!-- Data source -->
+
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="initialSize" value="${ds.initialSize}"/>
+        <property name="minIdle" value="${ds.minIdle}"/>
+        <property name="maxActive" value="${ds.maxActive}"/>
+        <property name="maxWait" value="${ds.maxWait}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="${ds.timeBetweenEvictionRunsMillis}"/>
+        <property name="minEvictableIdleTimeMillis" value="${ds.minEvictableIdleTimeMillis}"/>
+        <property name="validationQuery" value="SELECT 'x'"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+        <property name="poolPreparedStatements" value="false"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="20"/>
+        <property name="filters" value="stat"/>
+    </bean>
+
+    <!-- MyBatis SQL session factory -->
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="typeAliasesPackage" value="com.cnmengma.domain"/>
+    </bean>
+
+    <!-- Scans for mappers and let them be autowired -->
+
+    <mybatis:scan base-package="com.cnmengma.mapper"/>
+
+    <!-- Transaction manager -->
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- Enables transaction demarcation with annotations -->
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+</beans>

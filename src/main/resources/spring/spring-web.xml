@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- Base webmvc controller package -->
+
+    <context:component-scan base-package="com.cnmengma.api,com.cnmengma.webmvc" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!-- Enables the Spring MVC @Controller programming model -->
+
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=utf-8</value>
+                        <value>application/json;charset=utf-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!-- Handles static resources with DefaultServletHttpRequestHandler -->
+
+    <mvc:default-servlet-handler default-servlet-name="default"/>
+
+    <!-- FreeMarker configurations -->
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="templates"/>
+    </bean>
+
+    <!-- FreeMarker view resolver -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="cache" value="true"/>
+        <property name="prefix" value=""/>
+        <property name="suffix" value=".ftl"/>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+        <property name="exposeSpringMacroHelpers" value="true"/>
+        <property name="exposeRequestAttributes" value="true"/>
+        <property name="exposeSessionAttributes" value="true"/>
+    </bean>
+
+    <!-- Message externalization and internationalization -->
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="messages"/>
+    </bean>
+
+    <!-- i18n -->
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <property name="defaultLocale" value="zh_CN"/>
+    </bean>
+
+    <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <property name="paramName" value="lang"/>
+    </bean>
+
+    <mvc:interceptors>
+        <ref bean="localeChangeInterceptor"/>
+    </mvc:interceptors>
+
+</beans>

@@ -1,0 +1,194 @@
+/*******************************
+ Admin Global CSS
+*******************************/
+
+body {
+    background: #f2f2f2 !important;
+}
+
+a {
+    color: #4183C4;
+}
+
+a:hover {
+    color: #1e70bf;
+}
+
+/*-------------------
+ Page Header
+--------------------*/
+
+.page.header {
+}
+
+/* Site Navigation */
+
+.site-nav-admin {
+    height: 48px;
+}
+
+.site-nav-admin .ui.menu {
+    height: 100%;
+    border-top: 3px solid #21ba45 !important;
+}
+
+/*-------------------
+ Page Content
+--------------------*/
+
+.page.content {
+}
+
+/* Side Navigation */
+
+.side-nav-admin {
+    padding-right: 0 !important;
+}
+
+.side-nav-admin .ui.vertical.menu {
+    min-height: 960px;
+    border: 1px solid rgba(34, 36, 38, .15);
+    background: #fff;
+}
+
+.side-nav-admin .ui.vertical.menu .header.item {
+    padding-left: 16px;
+    font-size: 12px;
+    line-height: 24px;
+}
+
+.side-nav-admin .ui.vertical.menu .item {
+    padding-left: 32px;
+    line-height: 24px;
+}
+
+/* Workspace */
+
+.workspace {
+    padding-left: 0 !important;
+}
+
+.workspace .content {
+    min-height: 960px;
+    padding: 20px;
+    border: 1px solid rgba(34, 36, 38, .15);
+    border-left: none;
+    background: #fff;
+}
+
+.workspace .content a.ui.header:hover {
+    color: #16ab39;
+}
+
+/* Action Bar */
+
+.actionbar.overlay {
+    width: 920px;
+    transition: all 0.2s ease;
+}
+
+.actionbar.fixed.overlay {
+    position: fixed;
+    padding: 0 18px 0 14px;
+    border: 1px solid rgba(34, 36, 38, .15);
+    border-top: none;
+    box-shadow: 0 1px 8px rgba(34, 36, 38, .15);
+    background: #f3f4f5;
+}
+
+.actionbar input.search {
+    min-width: 240px;
+}
+
+/* Hint */
+
+.hint {
+    width: 100% !important;;
+    margin: 0 !important;
+    border-bottom: none !important;
+}
+
+.hint a {
+    color: #4183c4 !important;
+}
+
+.hint a:hover {
+    color: #1e70bf !important;
+}
+
+.hint .label {
+    color: rgba(0, 0, 0, .4);
+}
+
+.hint .query-keywords {
+    display: inline-block;
+    max-width: 160px;
+    overflow: hidden;
+    color: #f2711c;
+    vertical-align: bottom;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* Work Control */
+
+.work-control {
+    margin: 0 !important;
+}
+
+/* Worksheet */
+
+.worksheet {
+    padding: 0 !important;
+    border: 1px solid rgba(34, 36, 38, .15);
+}
+
+.worksheet .ui.table {
+    border: none;
+}
+
+.worksheet .ui.table .with-min-width {
+    min-width: 160px;
+}
+
+.worksheet .ui.table .with-min-action-width {
+    min-width: 120px;
+}
+
+.worksheet .ui.table tfoot.hidden {
+    display: none;
+}
+
+.worksheet .ui.table .ui.pagination.menu {
+    margin: 20px 0;
+}
+
+.worksheet .ui.table .count {
+    display: inline-block;
+    margin: 20px 0 20px 20px;
+}
+
+/* Filter */
+
+.filter {
+    padding: 0 !important;
+}
+
+.filter .ui.vertical.menu {
+    min-height: 720px;
+    padding: 6px;
+    border: 1px solid rgba(34, 36, 38, .15);
+    border-left: none;
+}
+
+.filter .ui.vertical.menu .item {
+    padding: 1em 1.5em;
+}
+
+.filter .ui.vertical.menu .level.two.item {
+    padding-left: 3em;
+}
+
+.filter .ui.vertical.menu .level.three.item {
+    padding-left: 4.5em;
+}

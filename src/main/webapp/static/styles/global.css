@@ -1,0 +1,87 @@
+/*******************************
+ Global CSS
+*******************************/
+
+a {
+    color: rgba(0, 0, 0, .8);
+}
+
+a:hover {
+    color: #16ab39;
+}
+
+/*-------------------
+ Page Header
+--------------------*/
+
+.page.header {
+}
+
+.page.header .ui.menu .ui.container {
+    padding: 0 1rem;
+}
+
+.page.header .ui.menu .item > i.dropdown.icon {
+    margin-left: .5em;
+}
+
+/*-------------------
+ Page Content
+--------------------*/
+
+.page.content {
+    padding-top: 20px;
+}
+
+.page.content .topfix {
+    margin-top: -20px !important;
+}
+
+/*-------------------
+ Footer
+--------------------*/
+
+.footer {
+    padding-top: 80px;
+}
+
+.footer .ui.container {
+    padding: 0 1rem;
+}
+
+.footer .ui.list a.item {
+    color: rgba(0, 0, 0, .8);
+}
+
+.footer .ui.list a.item:hover {
+    color: #16ab39;
+}
+
+/*-------------------
+ Misc
+--------------------*/
+
+/* Non-responsive */
+
+@media only screen and (min-width: 1200px) {
+    .ui.grid.container {
+        /* width: calc(1127px + 2rem) !important; */
+        width: 1200px !important;
+    }
+
+    .ui.container {
+        /* width: 1127px; */
+        width: 1200px !important;
+    }
+}
+
+@media only screen and (max-width: 1199px) {
+    .ui.grid.container {
+        /* width: 1200px !important; */
+    }
+
+    .ui.container {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}
