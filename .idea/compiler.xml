@@ -31,6 +31,13 @@
         <processorPath useClasspath="true" />
         <module name="mis" />
       </profile>
+      <profile default="false" name="Annotation profile for cmp" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="cmp" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="cmp" target="1.6" />

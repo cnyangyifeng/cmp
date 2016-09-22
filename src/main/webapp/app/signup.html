@@ -1,0 +1,63 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="renderer" content="webkit"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<link rel="shortcut icon" href="/static/favicon.ico" th:href="@{/static/favicon.ico}">
+<link rel="apple-touch-icon" href="/static/apple-touch-icon.png"/>
+<title>管理平台</title>
+<link rel="stylesheet" type="text/css" href="/static/semantic/semantic.css" th:href="@{/static/semantic/semantic.css}">
+<link rel="stylesheet" type="text/css" href="/static/styles/global.css" th:href="@{/static/styles/global.css}">
+<link rel="stylesheet" type="text/css" href="/static/styles/admin.css" th:href="@{/static/styles/admin.css}">
+<link rel="stylesheet" type="text/css" href="/static/styles/signup.css" th:href="@{/static/styles/signup.css}">
+</head>
+<body id="signup">
+<div class="ui center aligned grid">
+  <div class="column">
+    <div class="ui header">
+      <i class="circular inverted yoast icon"></i>
+    </div>
+    <form class="ui large form">
+      <div class="ui two item secondary pointing menu">
+        <a class="active item" href="signup.html" th:href="@{/signup}">注 册</a>
+        <a class="item" href="login.html" th:href="@{/login}">登 录</a>
+      </div>
+      <div class="ui segments">
+        <div class="ui raised segment">
+          <div class="field">
+            <div class="ui left icon transparent input">
+              <i class="user icon"></i>
+              <input type="text" name="realName" placeholder="姓名"/>
+            </div>
+          </div>
+        </div>
+        <div class="ui raised segment">
+          <div class="field">
+            <div class="ui left icon transparent input">
+              <i class="mobile icon"></i>
+              <input type="text" name="mobile" placeholder="手机号（仅支持中国大陆）"/>
+            </div>
+          </div>
+        </div>
+        <div class="ui raised segment">
+          <div class="field">
+            <div class="ui left icon transparent input">
+              <i class="lock icon"></i>
+              <input type="password" name="password" placeholder="密码（不少于 6 位）"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="ui fluid primary button" href="/" th:href="@{/}">注 册</a>
+    </form>
+  </div>
+</div>
+<script src="/static/bower_components/jquery/dist/jquery.min.js" th:src="@{/static/bower_components/jquery/dist/jquery.min.js}"></script>
+<script src="/static/semantic/semantic.js" th:src="@{/static/semantic/semantic.js}"></script>
+<script src="/static/scripts/global.js" th:src="@{/static/scripts/global.js}"></script>
+<script src="/static/scripts/signup.js" th:src="@{/static/scripts/signup.js}"></script>
+</body>
+</html>

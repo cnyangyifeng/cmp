@@ -1,5 +1,5 @@
 /*!
- * # Semantic UI 2.2.2 - Breadcrumb
+ * # Semantic UI 2.2.4 - Breadcrumb
  * http://github.com/semantic-org/semantic-ui/
  *
  *
@@ -119,11 +119,9 @@
 
 
 /*******************************
-         Site Overrides
+ Site Overrides
 *******************************/
 
-
-/* Link */
 .ui.breadcrumb a {
   color: rgba(0, 0, 0, 0.8);
 }

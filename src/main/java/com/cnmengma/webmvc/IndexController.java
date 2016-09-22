@@ -13,7 +13,7 @@ public class IndexController {
     private static final Logger logger = LogManager.getLogger();
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView pipe() {
+    public ModelAndView showIndexView() {
         logger.debug("{} accessed.", this.getClass().getSimpleName());
 
         ModelAndView mv = new ModelAndView();
@@ -21,5 +21,4 @@ public class IndexController {
 
         return mv;
     }
-
 }

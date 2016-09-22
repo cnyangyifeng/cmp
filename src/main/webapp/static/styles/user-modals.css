@@ -1,0 +1,11 @@
+/*******************************
+ User Modal Page CSS
+*******************************/
+
+#group-name-modal .content {
+    min-height: 720px !important;
+}
+
+#group-name-modal .search-input {
+    margin-bottom: 20px;
+}

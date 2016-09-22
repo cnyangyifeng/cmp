@@ -32,20 +32,22 @@
 
     <mvc:default-servlet-handler default-servlet-name="default"/>
 
-    <!-- FreeMarker configurations -->
-    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-        <property name="templateLoaderPath" value="templates"/>
+    <!-- Thymeleaf template resolver, template engine, view resolver -->
+
+    <bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
+        <property name="prefix" value="/app/"/>
+        <property name="suffix" value=".html"/>
+        <property name="templateMode" value="HTML"/>
     </bean>
 
-    <!-- FreeMarker view resolver -->
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-        <property name="cache" value="true"/>
-        <property name="prefix" value=""/>
-        <property name="suffix" value=".ftl"/>
-        <property name="contentType" value="text/html;charset=UTF-8"/>
-        <property name="exposeSpringMacroHelpers" value="true"/>
-        <property name="exposeRequestAttributes" value="true"/>
-        <property name="exposeSessionAttributes" value="true"/>
+    <bean id="templateEngine"
+          class="org.thymeleaf.spring4.SpringTemplateEngine">
+        <property name="templateResolver" ref="templateResolver"/>
+    </bean>
+
+    <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+        <property name="templateEngine" ref="templateEngine"/>
+        <property name="characterEncoding" value="UTF-8"/>
     </bean>
 
     <!-- Message externalization and internationalization -->

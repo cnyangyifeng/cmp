@@ -13,7 +13,7 @@ public class LoginController {
     private static final Logger logger = LogManager.getLogger();
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView view() {
+    public ModelAndView showLoginView() {
         logger.debug("{} accessed.", this.getClass().getSimpleName());
 
         ModelAndView mv = new ModelAndView();
@@ -21,5 +21,4 @@ public class LoginController {
 
         return mv;
     }
-
 }

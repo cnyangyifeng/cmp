@@ -1,5 +1,5 @@
 /*!
- * # Semantic UI 2.2.2 - Site
+ * # Semantic UI 2.2.4 - Site
  * http://github.com/semantic-org/semantic-ui/
  *
  *
@@ -25,7 +25,7 @@ body {
   padding: 0px;
   overflow-x: hidden;
   min-width: 1200px;
-  background: #FFF;
+  background: #fff;
   font-family: -apple-system, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   font-size: 14px;
   line-height: 1.4285em;
@@ -154,11 +154,11 @@ input::selection {
 
 
 /*******************************
-         Site Overrides
+ Site Overrides
 *******************************/
 
 body {
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-y: scroll;
 }

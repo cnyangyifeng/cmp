@@ -13,7 +13,7 @@ public class SignupController {
     private static final Logger logger = LogManager.getLogger();
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
-    public ModelAndView view() {
+    public ModelAndView showSignupView() {
         logger.debug("{} accessed.", this.getClass().getSimpleName());
 
         ModelAndView mv = new ModelAndView();
@@ -21,5 +21,4 @@ public class SignupController {
 
         return mv;
     }
-
 }
