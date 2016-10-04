@@ -8,9 +8,9 @@
     </Appenders>
 
     <Loggers>
-        <Logger name="com.cnmengma" level="debug"/>
-        <Logger name="com.cnmengma.mapper" level="debug"/>
-        <Root level="warn">
+        <Logger name="com.mocktpo" level="debug"/>
+        <Logger name="com.mocktpo.mapper" level="debug"/>
+        <Root level="error">
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>

@@ -1,0 +1,169 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="renderer" content="webkit"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<link rel="shortcut icon" href="/static/favicon.ico" th:href="@{/static/favicon.ico}">
+<link rel="apple-touch-icon" href="/static/apple-touch-icon.png"/>
+<title>管理平台</title>
+<link rel="stylesheet" type="text/css" href="/static/semantic/semantic.css" th:href="@{/static/semantic/semantic.css}">
+<link rel="stylesheet" type="text/css" href="/static/styles/global.css" th:href="@{/static/styles/global.css}">
+<link rel="stylesheet" type="text/css" href="/static/styles/admin.css" th:href="@{/static/styles/admin.css}">
+<link rel="stylesheet" type="text/css" href="/static/styles/create-license.css" th:href="@{/static/styles/create-license.css}">
+</head>
+<body id="create-license">
+<div class="page header">
+  <div class="site-nav-admin">
+    <div class="ui attached menu">
+      <div class="ui container">
+        <a class="header item" href="/" th:href="@{/}">
+          <i class="circular inverted yoast icon"></i> mocktpo.com
+        </a>
+        <div class="right menu">
+          <a class="item" href="javascript:;">杨义锋</a>
+          <a class="item" href="login.html" th:href="@{/login}">退出</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page content">
+  <div class="ui grid container">
+    <div class="row">
+      <div class="side-nav-admin three wide column">
+        <div class="side-nav-admin three wide column">
+          <div class="ui fluid vertical secondary menu">
+            <div class="header item">首页</div>
+            <a class="item" href="/" th:href="@{/}">运营数据</a>
+            <div class="header item">管理</div>
+            <a class="item" href="users.html" th:href="@{/users}">注册码</a>
+            <a class="item" href="groups.html" th:href="@{/groups}">群组</a>
+            <div class="header item">软件</div>
+            <a class="active item" href="licenses.html" th:href="@{/licenses}">注册码</a>
+          </div>
+        </div>
+      </div>
+      <div class="workspace thirteen wide column">
+        <div class="content">
+          <a class="ui header" href="licenses.html" th:href="@{/licenses}">注册码</a>
+          <div class="actionbar ui text menu">
+            <div class="item">
+              <a class="ui basic button" href="licenses.html" th:href="@{/licenses}">返回上页</a>
+            </div>
+          </div>
+          <div class="work-control ui grid">
+            <div class="table-form column">
+              <table class="ui padded unstackable table">
+                <thead>
+                <tr>
+                  <th colspan="3">添加注册码</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td class="collapsing">应用名称</td>
+                  <td class="collapsing">
+                    <div class="ui disabled right corner labeled input">
+                      <input id="app-name-input" placeholder="请输入名称" tabindex="1" value="MockTPO">
+                    </div>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="collapsing">型号</td>
+                  <td class="collapsing">
+                    <div class="ui disabled right corner labeled input">
+                      <input id="edition-input" placeholder="请输入型号" tabindex="1" value="Commercial">
+                    </div>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="collapsing">主版本</td>
+                  <td class="collapsing">
+                    <div class="ui disabled right corner labeled input">
+                      <input id="major-version-input" placeholder="请输入主版本" tabindex="1" value="1">
+                    </div>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="collapsing">电子邮箱</td>
+                  <td class="collapsing">
+                    <div class="long-input ui right corner labeled input">
+                      <input id="email-input" placeholder="请输入电子邮箱" tabindex="1">
+                      <div class="ui right corner label">
+                        <i class="asterisk icon"></i>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="hidden ui left pointing orange basic label" id="email-message-label"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="collapsing">机器码</td>
+                  <td class="collapsing">
+                    <div class="long-input ui right corner labeled input">
+                      <input id="hardware-input" placeholder="请输入机器码" tabindex="1">
+                      <div class="ui right corner label">
+                        <i class="asterisk icon"></i>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="hidden ui left pointing orange basic label" id="hardware-message-label"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="collapsing">有效日期</td>
+                  <td class="collapsing">
+                    <div class="long-input ui right corner labeled input">
+                      <input id="valid-through-input" placeholder="请输入有效日期，格式为20170101" tabindex="1">
+                      <div class="ui right corner label">
+                        <i class="asterisk icon"></i>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="hidden ui left pointing orange basic label" id="valid-through-message-label"></div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="actionbar ui text menu">
+            <div class="item">
+              <div class="ui primary button" id="save-button" tabindex="1">保存</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <div class="ui container">
+    <div class="ui section divider"></div>
+    <div class="ui small horizontal list">
+      <a class="item" href="">关于我们</a>
+      <a class="item" href="">移动APP</a>
+      <a class="item" href="">官方微信</a>
+      <a class="item" href="">官方微博</a>
+      <div class="item">客服电话 4008-123-123</div>
+    </div>
+    <div class="ui small right floated horizontal list">
+      <div class="item">&copy; 2016 Mengma, Inc. All Rights Reserved.</div>
+    </div>
+  </div>
+</div>
+<script src="/static/bower_components/jquery/dist/jquery.min.js" th:src="@{/static/bower_components/jquery/dist/jquery.min.js}"></script>
+<script src="/static/semantic/semantic.js" th:src="@{/static/semantic/semantic.js}"></script>
+<script src="/static/scripts/global.js" th:src="@{/static/scripts/global.js}"></script>
+<script src="/static/scripts/create-license.js" th:src="@{/static/scripts/create-license.js}"></script>
+</body>
+</html>

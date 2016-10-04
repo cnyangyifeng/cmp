@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mocktpo.mapper.GroupMapper">
+
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+
+    <select id="find" resultType="Group">
+        SELECT
+        CMP_GROUP.CMP_GROUP_ID AS groupId,
+        CMP_GROUP.CMP_GROUP_NAME AS groupName,
+        CMP_GROUP.CMP_SERIAL_NUMBER AS serialNumber
+        FROM CMP_GROUP
+        ORDER BY
+        CMP_GROUP.CMP_SERIAL_NUMBER ASC
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="findById" resultType="Group">
+        SELECT
+        CMP_GROUP.CMP_GROUP_ID AS groupId,
+        CMP_GROUP.CMP_GROUP_NAME AS groupName,
+        CMP_GROUP.CMP_SERIAL_NUMBER AS serialNumber
+        FROM CMP_GROUP
+        WHERE
+        CMP_GROUP.CMP_GROUP_ID = #{groupId}
+    </select>
+
+    <insert id="create" parameterType="Group">
+        INSERT
+        INTO CMP_GROUP (
+        CMP_GROUP.CMP_GROUP_NAME,
+        CMP_GROUP.CMP_SERIAL_NUMBER
+        ) VALUES (
+        #{groupName},
+        #{serialNumber}
+        )
+    </insert>
+
+    <update id="update" parameterType="Group">
+        UPDATE
+        CMP_GROUP
+        SET
+        CMP_GROUP.CMP_GROUP_NAME = #{groupName},
+        CMP_GROUP.CMP_SERIAL_NUMBER = #{serialNumber}
+        WHERE
+        <if test="groupId != null">
+            CMP_GROUP.CMP_GROUP_ID = #{groupId}
+        </if>
+    </update>
+
+    <delete id="deleteByIds">
+        DELETE
+        FROM CMP_GROUP
+        WHERE
+        CMP_GROUP.CMP_GROUP_ID
+        IN
+        <foreach collection="array" item="groupId" open="(" separator="," close=")">
+            #{groupId}
+        </foreach>
+    </delete>
+
+    <delete id="deleteById">
+        DELETE
+        FROM CMP_GROUP
+        WHERE
+        CMP_GROUP.CMP_GROUP_ID = #{groupId}
+    </delete>
+
+    <select id="searchByName" resultType="Group">
+        SELECT
+        CMP_GROUP.CMP_GROUP_ID AS groupId,
+        CMP_GROUP.CMP_GROUP_NAME AS groupName,
+        CMP_GROUP.CMP_SERIAL_NUMBER AS serialNumber
+        FROM CMP_GROUP
+        WHERE
+        CMP_GROUP.CMP_GROUP_NAME LIKE "%"#{q}"%"
+        ORDER BY
+        CMP_GROUP.CMP_SERIAL_NUMBER ASC
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="findCount" resultType="int">
+        SELECT
+        COUNT(*)
+        FROM CMP_GROUP
+    </select>
+
+    <select id="searchByNameCount" resultType="int">
+        SELECT
+        COUNT(*)
+        FROM CMP_GROUP
+        WHERE
+        CMP_GROUP.CMP_GROUP_NAME LIKE "%"#{q}"%"
+    </select>
+
+</mapper>

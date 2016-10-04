@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mocktpo.mapper.LicenseMapper">
+
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+
+    <select id="find" resultType="License">
+        SELECT
+        CMP_LICENSE.CMP_LICENSE_ID AS licenseId,
+        CMP_LICENSE.CMP_APP_NAME AS appName,
+        CMP_LICENSE.CMP_EDITION AS edition,
+        CMP_LICENSE.CMP_MAJOR_VERSION AS majorVersion,
+        CMP_LICENSE.CMP_EMAIL AS email,
+        CMP_LICENSE.CMP_HARDWARE AS hardware,
+        CMP_LICENSE.CMP_VALID_THROUGH AS validThrough,
+        CMP_LICENSE.CMP_DATE_CREATED AS dateCreated,
+        CMP_LICENSE.CMP_DATE_UPDATED AS dateUpdated
+        FROM CMP_LICENSE
+        ORDER BY
+        CMP_LICENSE.CMP_DATE_UPDATED DESC
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="findById" resultType="License">
+        SELECT
+        CMP_LICENSE.CMP_LICENSE_ID AS licenseId,
+        CMP_LICENSE.CMP_APP_NAME AS appName,
+        CMP_LICENSE.CMP_EDITION AS edition,
+        CMP_LICENSE.CMP_MAJOR_VERSION AS majorVersion,
+        CMP_LICENSE.CMP_EMAIL AS email,
+        CMP_LICENSE.CMP_HARDWARE AS hardware,
+        CMP_LICENSE.CMP_VALID_THROUGH AS validThrough,
+        CMP_LICENSE.CMP_DATE_CREATED AS dateCreated,
+        CMP_LICENSE.CMP_DATE_UPDATED AS dateUpdated
+        FROM CMP_LICENSE
+        WHERE
+        CMP_LICENSE.CMP_LICENSE_ID = #{licenseId}
+    </select>
+
+    <insert id="create" parameterType="License">
+        INSERT
+        INTO CMP_LICENSE (
+        CMP_LICENSE.CMP_APP_NAME,
+        CMP_LICENSE.CMP_EDITION,
+        CMP_LICENSE.CMP_MAJOR_VERSION,
+        CMP_LICENSE.CMP_EMAIL,
+        CMP_LICENSE.CMP_HARDWARE,
+        CMP_LICENSE.CMP_VALID_THROUGH,
+        CMP_LICENSE.CMP_DATE_CREATED,
+        CMP_LICENSE.CMP_DATE_UPDATED
+        ) VALUES (
+        #{appName},
+        #{edition},
+        #{majorVersion},
+        #{email},
+        #{hardware},
+        #{validThrough},
+        #{dateCreated},
+        #{dateUpdated}
+        )
+    </insert>
+
+    <update id="update" parameterType="License">
+        UPDATE
+        CMP_LICENSE
+        SET
+        CMP_LICENSE.CMP_APP_NAME = #{appName},
+        CMP_LICENSE.CMP_EDITION = #{edition},
+        CMP_LICENSE.CMP_MAJOR_VERSION = #{majorVersion},
+        CMP_LICENSE.CMP_EMAIL = #{email},
+        CMP_LICENSE.CMP_HARDWARE = #{hardware},
+        CMP_LICENSE.CMP_VALID_THROUGH = #{validThrough},
+        CMP_LICENSE.CMP_DATE_UPDATED = #{dateUpdated}
+        WHERE
+        <if test="licenseId != null">
+            CMP_LICENSE.CMP_LICENSE_ID = #{licenseId}
+        </if>
+    </update>
+
+    <delete id="deleteByIds">
+        DELETE
+        FROM CMP_LICENSE
+        WHERE
+        CMP_LICENSE.CMP_LICENSE_ID
+        IN
+        <foreach collection="array" item="licenseId" open="(" separator="," close=")">
+            #{licenseId}
+        </foreach>
+    </delete>
+
+    <delete id="deleteById">
+        DELETE
+        FROM CMP_LICENSE
+        WHERE
+        CMP_LICENSE.CMP_LICENSE_ID = #{licenseId}
+    </delete>
+
+    <select id="searchByName" resultType="License">
+        SELECT
+        CMP_LICENSE.CMP_LICENSE_ID AS licenseId,
+        CMP_LICENSE.CMP_APP_NAME AS appName,
+        CMP_LICENSE.CMP_EDITION AS edition,
+        CMP_LICENSE.CMP_MAJOR_VERSION AS majorVersion,
+        CMP_LICENSE.CMP_EMAIL AS email,
+        CMP_LICENSE.CMP_HARDWARE AS hardware,
+        CMP_LICENSE.CMP_VALID_THROUGH AS validThrough,
+        CMP_LICENSE.CMP_DATE_CREATED AS dateCreated,
+        CMP_LICENSE.CMP_DATE_UPDATED AS dateUpdated
+        FROM CMP_LICENSE
+        WHERE
+        CMP_LICENSE.CMP_HARDWARE LIKE "%"#{q}"%"
+        ORDER BY
+        CMP_LICENSE.CMP_DATE_UPDATED DESC
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="findCount" resultType="int">
+        SELECT
+        COUNT(*)
+        FROM CMP_LICENSE
+    </select>
+
+    <select id="searchByNameCount" resultType="int">
+        SELECT
+        COUNT(*)
+        FROM CMP_LICENSE
+        WHERE
+        CMP_LICENSE.CMP_HARDWARE LIKE "%"#{q}"%"
+    </select>
+
+</mapper>

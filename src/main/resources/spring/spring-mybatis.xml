@@ -13,7 +13,7 @@
 
     <!-- Enables component scanning and autowire, but beware that this does not enable mapper scanning -->
 
-    <context:component-scan base-package="com.cnmengma.service"/>
+    <context:component-scan base-package="com.mocktpo.service"/>
 
     <!-- Data source -->
 
@@ -40,12 +40,12 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="typeAliasesPackage" value="com.cnmengma.domain"/>
+        <property name="typeAliasesPackage" value="com.mocktpo.domain"/>
     </bean>
 
     <!-- Scans for mappers and let them be autowired -->
 
-    <mybatis:scan base-package="com.cnmengma.mapper"/>
+    <mybatis:scan base-package="com.mocktpo.mapper"/>
 
     <!-- Transaction manager -->
 
