@@ -10,7 +10,7 @@
     <Loggers>
         <Logger name="com.mocktpo" level="debug"/>
         <Logger name="com.mocktpo.mapper" level="debug"/>
-        <Root level="error">
+        <Root level="debug">
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>

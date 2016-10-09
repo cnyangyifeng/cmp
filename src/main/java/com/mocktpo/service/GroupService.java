@@ -13,11 +13,11 @@ public class GroupService {
     @Autowired
     private GroupMapper groupMapper;
 
-    public List<Group> find(int offset, int limit) {
+    public List<Group> find(long offset, long limit) {
         return groupMapper.find(offset, limit);
     }
 
-    public Group findById(int groupId) {
+    public Group findById(long groupId) {
         return groupMapper.findById(groupId);
     }
 
@@ -29,24 +29,23 @@ public class GroupService {
         groupMapper.update(group);
     }
 
-    public void deleteByIds(int[] groupIds) {
+    public void deleteByIds(long[] groupIds) {
         groupMapper.deleteByIds(groupIds);
     }
 
-    public void deleteById(int groupId) {
+    public void deleteById(long groupId) {
         groupMapper.deleteById(groupId);
     }
 
-    public List<Group> searchByName(String q, int offset, int limit) {
+    public List<Group> searchByName(String q, long offset, long limit) {
         return groupMapper.searchByName(q, offset, limit);
     }
 
-    public int findCount() {
+    public long findCount() {
         return groupMapper.findCount();
     }
 
-    public int searchByNameCount(String q) {
+    public long searchByNameCount(String q) {
         return groupMapper.searchByNameCount(q);
     }
-
 }

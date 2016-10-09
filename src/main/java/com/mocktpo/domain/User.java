@@ -4,17 +4,19 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
-    private int userId;
-    private String userName;
-    private int groupId;
-    private String groupName;
-    private int serialNumber;
+    private static final long serialVersionUID = 1L;
 
-    public int getUserId() {
+    private long userId;
+    private String userName;
+    private long groupId;
+    private String groupName;
+    private long serialNumber;
+
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
@@ -26,11 +28,11 @@ public class User implements Serializable {
         this.userName = userName;
     }
 
-    public int getGroupId() {
+    public long getGroupId() {
         return groupId;
     }
 
-    public void setGroupId(int groupId) {
+    public void setGroupId(long groupId) {
         this.groupId = groupId;
     }
 
@@ -42,17 +44,16 @@ public class User implements Serializable {
         this.groupName = groupName;
     }
 
-    public int getSerialNumber() {
+    public long getSerialNumber() {
         return serialNumber;
     }
 
-    public void setSerialNumber(int serialNumber) {
+    public void setSerialNumber(long serialNumber) {
         this.serialNumber = serialNumber;
     }
 
     @Override
     public String toString() {
-        return this.getUserName();
+        return "{userId:" + this.getUserId() + ";userName:" + this.getUserName() + ";groupId:" + this.getGroupId() + ";groupName:" + this.getGroupName() + ";serialNumber:" + this.getSerialNumber() + "}";
     }
-
 }

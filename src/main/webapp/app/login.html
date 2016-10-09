@@ -22,15 +22,15 @@
     </div>
     <form class="ui large form">
       <div class="ui two item secondary pointing menu">
-        <a class="item" href="signup.html" th:href="@{/signup}">注 册</a>
-        <a class="active item" href="login.html" th:href="@{/login}">登 录</a>
+        <a class="item" href="signup.html" tabindex="0" th:href="@{/signup}">注 册</a>
+        <a class="active item" href="login.html" tabindex="0" th:href="@{/login}">登 录</a>
       </div>
       <div class="ui segments">
         <div class="ui raised segment">
           <div class="field">
             <div class="ui left icon transparent input">
               <i class="mobile icon"></i>
-              <input type="text" name="mobile" placeholder="手机号"/>
+              <input type="text" id="mobile-input" name="mobile" placeholder="手机号" tabindex="1"/>
             </div>
           </div>
         </div>
@@ -38,12 +38,12 @@
           <div class="field">
             <div class="ui left icon transparent input">
               <i class="lock icon"></i>
-              <input type="password" name="password" placeholder="密码"/>
+              <input type="password" id="password-input" name="password" placeholder="密码" tabindex="1"/>
             </div>
           </div>
         </div>
       </div>
-      <a class="ui fluid primary button" href="/" th:href="@{/}">登 录</a>
+      <a class="ui fluid primary button" id="login-button" tabindex="1">登 录</a>
     </form>
   </div>
 </div>

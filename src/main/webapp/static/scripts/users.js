@@ -421,8 +421,9 @@ users.ready = function () {
         /* delete */
 
         delete: function () {
-            var userIds = [];
-            $checkedCheckboxes = $checkboxes.filter('.checked');
+            var userIds = [],
+                $checkedCheckboxes = $checkboxes.filter('.checked')
+                ;
             $checkedCheckboxes.each(function () {
                 var userId = $(this).find('input').attr('id');
                 userIds
@@ -463,6 +464,9 @@ users.ready = function () {
                     }
                     $deleteModal
                         .modal('hide')
+                    ;
+                    $deleteButton
+                        .removeClass('loading disabled')
                     ;
                 },
 

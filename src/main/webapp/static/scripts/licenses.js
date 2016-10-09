@@ -146,8 +146,8 @@ licenses.ready = function () {
             $searchButton
                 .addClass('loading disabled')
             ;
-            handler.
-                animatedScrollTop()
+            handler
+                .animatedScrollTop()
             ;
             handler
                 .indicateDataLoading()
@@ -222,7 +222,7 @@ licenses.ready = function () {
         indicateDataLoading: function () {
             var tableBody =
                     '<tr>' +
-                    '  <td colspan="4">' + '数据加载中...' + '</td>' +
+                    '  <td colspan="3">' + '数据加载中...' + '</td>' +
                     '</tr>'
                 ;
             $workTable
@@ -262,7 +262,7 @@ licenses.ready = function () {
                 var blank = '';
 
                 blank +=
-                    '<td colspan="4">' +
+                    '<td colspan="3">' +
                     '抱歉，没有找到相关结果' +
                     '</td>'
                 ;
@@ -276,20 +276,16 @@ licenses.ready = function () {
                     var row = '';
 
                     row +=
-                        '<td class="collapsing with-min-width">' +
+                        '<td class="collapsing">' +
                         '  <div class="license ui checkbox">' +
                         '    <input type="checkbox" id="' + data[i].licenseId + '">' +
-                        '    <label for="' + data[i].licenseId + '">' + data[i].licenseName + '</label>' +
+                        '    <label for="' + data[i].licenseId + '" class="email-label">' + data[i].email + '</label>' +
                         '  </div>' +
                         '</td>'
                     ;
 
                     row +=
-                        '<td class="collapsing with-min-width">' + data[i].groupName + '</td>'
-                    ;
-
-                    row +=
-                        '<td>' + data[i].serialNumber + '</td>'
+                        '<td>' + data[i].hardware + '</td>'
                     ;
 
                     var viewUrl = app + '/licenses/' + data[i].licenseId;
@@ -421,8 +417,10 @@ licenses.ready = function () {
         /* delete */
 
         delete: function () {
-            var licenseIds = [];
-            $checkedCheckboxes = $checkboxes.filter('.checked');
+            var
+                licenseIds = [],
+                $checkedCheckboxes = $checkboxes.filter('.checked')
+                ;
             $checkedCheckboxes.each(function () {
                 var licenseId = $(this).find('input').attr('id');
                 licenseIds
@@ -463,6 +461,9 @@ licenses.ready = function () {
                     }
                     $deleteModal
                         .modal('hide')
+                    ;
+                    $deleteButton
+                        .removeClass('loading disabled')
                     ;
                 },
 

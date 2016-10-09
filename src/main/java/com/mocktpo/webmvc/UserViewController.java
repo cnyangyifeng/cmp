@@ -1,5 +1,6 @@
 package com.mocktpo.webmvc;
 
+import com.mocktpo.domain.Agent;
 import com.mocktpo.domain.User;
 import com.mocktpo.service.UserService;
 import org.apache.logging.log4j.LogManager;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class UserViewController {
 
@@ -20,28 +23,43 @@ public class UserViewController {
     private UserService userService;
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public ModelAndView showUsersView() {
+    public ModelAndView showUsersView(HttpSession session) {
         logger.debug("{}.{}() accessed.", this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("users");
+        Agent agent = (Agent) session.getAttribute("agent");
+        if (null == agent) {
+            mv.setViewName("login");
+        } else {
+            mv.setViewName("users");
+        }
         return mv;
     }
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
-    public ModelAndView showUserView(@PathVariable int id) {
+    public ModelAndView showUserView(HttpSession session, @PathVariable long id) {
         logger.debug("{}.{}() accessed.", this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
         User user = userService.findById(id);
         ModelAndView mv = new ModelAndView();
-        mv.addObject("user", user);
-        mv.setViewName("user");
+        Agent agent = (Agent) session.getAttribute("agent");
+        if (null == agent) {
+            mv.setViewName("login");
+        } else {
+            mv.addObject("user", user);
+            mv.setViewName("user");
+        }
         return mv;
     }
 
     @RequestMapping(value = "/users/create", method = RequestMethod.GET)
-    public ModelAndView showCreateUserView() {
+    public ModelAndView showCreateUserView(HttpSession session) {
         logger.debug("{}.{}() accessed.", this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("create-user");
+        Agent agent = (Agent) session.getAttribute("agent");
+        if (null == agent) {
+            mv.setViewName("login");
+        } else {
+            mv.setViewName("create-user");
+        }
         return mv;
     }
 }

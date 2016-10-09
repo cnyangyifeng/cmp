@@ -13,7 +13,6 @@ createLicense.ready = function () {
         $emailInput = $('#email-input'),
         $emailMessageLabel = $('#email-message-label'),
         $hardwareInput = $('#hardware-input'),
-        $hardwareMessageLabel = $('#hardware-message-label'),
         $validThroughInput = $('#valid-through-input'),
         $validThroughMessageLabel = $('#valid-through-message-label'),
         $saveButton = $('#save-button'),
@@ -39,7 +38,7 @@ createLicense.ready = function () {
                 validThrough = $validThroughInput.val()
                 ;
 
-            if (!handler.validateEmailInput() || !handler.validateHardwareInput() || !handler.validateValidThroughInput()) {
+            if (!handler.validateEmailInput() || !handler.validateValidThroughInput()) {
                 return;
             }
 
@@ -94,27 +93,16 @@ createLicense.ready = function () {
                 return false;
             }
 
-            $emailMessageLabel
-                .addClass('hidden')
-                .text('')
-            ;
-            return true;
-        },
-
-        validateHardwareInput: function () {
-            var
-                groupId = $hardwareInput.val()
-                ;
-
-            if (groupId == 0) {
-                $hardwareMessageLabel
+            var reg = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+            if (!reg.test(email)) {
+                $emailMessageLabel
                     .removeClass('hidden')
-                    .text('不能为空')
+                    .text('必须为电子邮箱格式')
                 ;
                 return false;
             }
 
-            $hardwareMessageLabel
+            $emailMessageLabel
                 .addClass('hidden')
                 .text('')
             ;
@@ -177,10 +165,6 @@ createLicense.ready = function () {
 
     $emailInput
         .on('blur', handler.validateEmailInput)
-    ;
-
-    $hardwareInput
-        .on('blur', handler.validateHardwareInput)
     ;
 
     $validThroughInput

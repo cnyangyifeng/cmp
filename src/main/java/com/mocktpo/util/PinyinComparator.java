@@ -27,5 +27,4 @@ public class PinyinComparator implements Comparator<Object> {
 
         return sb.toString();
     }
-
 }

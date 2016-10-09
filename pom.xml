@@ -15,8 +15,10 @@
         <fastjson.version>1.2.15</fastjson.version>
         <inject.version>1</inject.version>
         <java.version>1.6</java.version>
+        <javamail.version>1.5.6</javamail.version>
         <jsp.version>2.2</jsp.version>
         <junit.version>4.12</junit.version>
+        <license3j.version>1.0.7</license3j.version>
         <log4j.version>2.6.2</log4j.version>
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
@@ -215,7 +217,15 @@
         <dependency>
             <groupId>com.verhas</groupId>
             <artifactId>license3j</artifactId>
-            <version>1.0.7</version>
+            <version>${license3j.version}</version>
+        </dependency>
+
+        <!-- JavaMail -->
+
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>${javamail.version}</version>
         </dependency>
 
         <!-- Test -->

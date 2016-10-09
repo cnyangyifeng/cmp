@@ -7,22 +7,21 @@ import java.util.List;
 
 public interface UserMapper {
 
-    List<User> find(@Param("offset") int offset, @Param("limit") int limit);
+    List<User> find(@Param("offset") long offset, @Param("limit") long limit);
 
-    User findById(int userId);
+    User findById(long userId);
 
     void create(User user);
 
     void update(User user);
 
-    void deleteByIds(int[] userIds);
+    void deleteByIds(long[] userIds);
 
-    void deleteById(int userId);
+    void deleteById(long userId);
 
-    List<User> searchByName(@Param("q") String q, @Param("offset") int offset, @Param("limit") int limit);
+    List<User> searchByName(@Param("q") String q, @Param("offset") long offset, @Param("limit") long limit);
 
-    int findCount();
+    long findCount();
 
-    int searchByNameCount(String q);
-
+    long searchByNameCount(String q);
 }

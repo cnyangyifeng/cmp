@@ -37,6 +37,61 @@
         CMP_LICENSE.CMP_LICENSE_ID = #{licenseId}
     </select>
 
+    <select id="findByEmail" resultType="License">
+        SELECT
+        CMP_LICENSE.CMP_LICENSE_ID AS licenseId,
+        CMP_LICENSE.CMP_APP_NAME AS appName,
+        CMP_LICENSE.CMP_EDITION AS edition,
+        CMP_LICENSE.CMP_MAJOR_VERSION AS majorVersion,
+        CMP_LICENSE.CMP_EMAIL AS email,
+        CMP_LICENSE.CMP_HARDWARE AS hardware,
+        CMP_LICENSE.CMP_VALID_THROUGH AS validThrough,
+        CMP_LICENSE.CMP_DATE_CREATED AS dateCreated,
+        CMP_LICENSE.CMP_DATE_UPDATED AS dateUpdated
+        FROM CMP_LICENSE
+        WHERE
+        CMP_LICENSE.CMP_EMAIL = #{email}
+        ORDER BY
+        CMP_LICENSE.CMP_DATE_UPDATED DESC
+    </select>
+
+    <select id="findByHardware" resultType="License">
+        SELECT
+        CMP_LICENSE.CMP_LICENSE_ID AS licenseId,
+        CMP_LICENSE.CMP_APP_NAME AS appName,
+        CMP_LICENSE.CMP_EDITION AS edition,
+        CMP_LICENSE.CMP_MAJOR_VERSION AS majorVersion,
+        CMP_LICENSE.CMP_EMAIL AS email,
+        CMP_LICENSE.CMP_HARDWARE AS hardware,
+        CMP_LICENSE.CMP_VALID_THROUGH AS validThrough,
+        CMP_LICENSE.CMP_DATE_CREATED AS dateCreated,
+        CMP_LICENSE.CMP_DATE_UPDATED AS dateUpdated
+        FROM CMP_LICENSE
+        WHERE
+        CMP_LICENSE.CMP_HARDWARE = #{hardware}
+        ORDER BY
+        CMP_LICENSE.CMP_DATE_UPDATED DESC
+    </select>
+
+    <select id="findByEmailAndHardware" resultType="License">
+        SELECT
+        CMP_LICENSE.CMP_LICENSE_ID AS licenseId,
+        CMP_LICENSE.CMP_APP_NAME AS appName,
+        CMP_LICENSE.CMP_EDITION AS edition,
+        CMP_LICENSE.CMP_MAJOR_VERSION AS majorVersion,
+        CMP_LICENSE.CMP_EMAIL AS email,
+        CMP_LICENSE.CMP_HARDWARE AS hardware,
+        CMP_LICENSE.CMP_VALID_THROUGH AS validThrough,
+        CMP_LICENSE.CMP_DATE_CREATED AS dateCreated,
+        CMP_LICENSE.CMP_DATE_UPDATED AS dateUpdated
+        FROM CMP_LICENSE
+        WHERE
+        CMP_LICENSE.CMP_EMAIL = #{email}
+        AND CMP_LICENSE.CMP_HARDWARE = #{hardware}
+        ORDER BY
+        CMP_LICENSE.CMP_DATE_UPDATED DESC
+    </select>
+
     <insert id="create" parameterType="License">
         INSERT
         INTO CMP_LICENSE (
@@ -72,9 +127,7 @@
         CMP_LICENSE.CMP_VALID_THROUGH = #{validThrough},
         CMP_LICENSE.CMP_DATE_UPDATED = #{dateUpdated}
         WHERE
-        <if test="licenseId != null">
-            CMP_LICENSE.CMP_LICENSE_ID = #{licenseId}
-        </if>
+        CMP_LICENSE.CMP_LICENSE_ID = #{licenseId}
     </update>
 
     <delete id="deleteByIds">
@@ -108,19 +161,19 @@
         CMP_LICENSE.CMP_DATE_UPDATED AS dateUpdated
         FROM CMP_LICENSE
         WHERE
-        CMP_LICENSE.CMP_HARDWARE LIKE "%"#{q}"%"
+        CMP_LICENSE.CMP_EMAIL LIKE "%"#{q}"%"
         ORDER BY
         CMP_LICENSE.CMP_DATE_UPDATED DESC
         LIMIT #{offset}, #{limit}
     </select>
 
-    <select id="findCount" resultType="int">
+    <select id="findCount" resultType="long">
         SELECT
         COUNT(*)
         FROM CMP_LICENSE
     </select>
 
-    <select id="searchByNameCount" resultType="int">
+    <select id="searchByNameCount" resultType="long">
         SELECT
         COUNT(*)
         FROM CMP_LICENSE

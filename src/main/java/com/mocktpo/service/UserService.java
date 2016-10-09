@@ -13,11 +13,11 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
-    public List<User> find(int offset, int limit) {
+    public List<User> find(long offset, long limit) {
         return userMapper.find(offset, limit);
     }
 
-    public User findById(int userId) {
+    public User findById(long userId) {
         return userMapper.findById(userId);
     }
 
@@ -29,24 +29,23 @@ public class UserService {
         userMapper.update(user);
     }
 
-    public void deleteByIds(int[] userIds) {
+    public void deleteByIds(long[] userIds) {
         userMapper.deleteByIds(userIds);
     }
 
-    public void deleteById(int userId) {
+    public void deleteById(long userId) {
         userMapper.deleteById(userId);
     }
 
-    public List<User> searchByName(String q, int offset, int limit) {
+    public List<User> searchByName(String q, long offset, long limit) {
         return userMapper.searchByName(q, offset, limit);
     }
 
-    public int findCount() {
+    public long findCount() {
         return userMapper.findCount();
     }
 
-    public int searchByNameCount(String q) {
+    public long searchByNameCount(String q) {
         return userMapper.searchByNameCount(q);
     }
-
 }

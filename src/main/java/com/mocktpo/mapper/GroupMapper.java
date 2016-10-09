@@ -7,22 +7,21 @@ import java.util.List;
 
 public interface GroupMapper {
 
-    List<Group> find(@Param("offset") int offset, @Param("limit") int limit);
+    List<Group> find(@Param("offset") long offset, @Param("limit") long limit);
 
-    Group findById(int groupId);
+    Group findById(long groupId);
 
     void create(Group group);
 
     void update(Group group);
 
-    void deleteByIds(int[] groupIds);
+    void deleteByIds(long[] groupIds);
 
-    void deleteById(int groupId);
+    void deleteById(long groupId);
 
-    List<Group> searchByName(@Param("q") String q, @Param("offset") int offset, @Param("limit") int limit);
+    List<Group> searchByName(@Param("q") String q, @Param("offset") long offset, @Param("limit") long limit);
 
-    int findCount();
+    long findCount();
 
-    int searchByNameCount(String q);
-
+    long searchByNameCount(String q);
 }

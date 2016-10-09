@@ -7,22 +7,27 @@ import java.util.List;
 
 public interface LicenseMapper {
 
-    List<License> find(@Param("offset") int offset, @Param("limit") int limit);
+    List<License> find(@Param("offset") long offset, @Param("limit") long limit);
 
-    License findById(int licenseId);
+    License findById(long licenseId);
+
+    List<License> findByEmail(@Param("email") String email);
+
+    List<License> findByHardware(@Param("hardware") String hardware);
+
+    List<License> findByEmailAndHardware(@Param("email") String email, @Param("hardware") String hardware);
 
     void create(License license);
 
     void update(License license);
 
-    void deleteByIds(int[] licenseIds);
+    void deleteByIds(long[] licenseIds);
 
-    void deleteById(int licenseId);
+    void deleteById(long licenseId);
 
-    List<License> searchByName(@Param("q") String q, @Param("offset") int offset, @Param("limit") int limit);
+    List<License> searchByName(@Param("q") String q, @Param("offset") long offset, @Param("limit") long limit);
 
-    int findCount();
+    long findCount();
 
-    int searchByNameCount(String q);
-
+    long searchByNameCount(String q);
 }

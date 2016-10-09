@@ -11,42 +11,53 @@ import java.util.List;
 public class LicenseService {
 
     @Autowired
-    private LicenseMapper licenseMapper;
+    private LicenseMapper mapper;
 
-    public List<License> find(int offset, int limit) {
-        return licenseMapper.find(offset, limit);
+    public List<License> find(long offset, long limit) {
+        return mapper.find(offset, limit);
     }
 
-    public License findById(int licenseId) {
-        return licenseMapper.findById(licenseId);
+    public License findById(long licenseId) {
+        return mapper.findById(licenseId);
+    }
+
+    public List<License> findByEmail(String email) {
+        return mapper.findByEmail(email);
+    }
+
+    public List<License> findByHardware(String hardware) {
+        return mapper.findByHardware(hardware);
+    }
+
+    public List<License> findByEmailAndHardware(String email, String hardware) {
+        return mapper.findByEmailAndHardware(email, hardware);
     }
 
     public void create(License license) {
-        licenseMapper.create(license);
+        mapper.create(license);
     }
 
     public void update(License license) {
-        licenseMapper.update(license);
+        mapper.update(license);
     }
 
-    public void deleteByIds(int[] licenseIds) {
-        licenseMapper.deleteByIds(licenseIds);
+    public void deleteByIds(long[] licenseIds) {
+        mapper.deleteByIds(licenseIds);
     }
 
-    public void deleteById(int licenseId) {
-        licenseMapper.deleteById(licenseId);
+    public void deleteById(long licenseId) {
+        mapper.deleteById(licenseId);
     }
 
-    public List<License> searchByName(String q, int offset, int limit) {
-        return licenseMapper.searchByName(q, offset, limit);
+    public List<License> searchByName(String q, long offset, long limit) {
+        return mapper.searchByName(q, offset, limit);
     }
 
-    public int findCount() {
-        return licenseMapper.findCount();
+    public long findCount() {
+        return mapper.findCount();
     }
 
-    public int searchByNameCount(String q) {
-        return licenseMapper.searchByNameCount(q);
+    public long searchByNameCount(String q) {
+        return mapper.searchByNameCount(q);
     }
-
 }

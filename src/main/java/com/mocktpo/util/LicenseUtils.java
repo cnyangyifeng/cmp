@@ -1,16 +1,11 @@
 package com.mocktpo.util;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-
-import com.mocktpo.util.constants.ResourcesConstants;
+import com.mocktpo.util.constants.GlobalConstants;
+import com.verhas.licensor.License;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.verhas.licensor.License;
+import java.io.*;
 
 public class LicenseUtils {
 
@@ -20,10 +15,10 @@ public class LicenseUtils {
     }
 
     public static void encode(String out, String plain, String secring, String key, String password) {
-        String path = LicenseUtils.class.getResource(ResourcesConstants.KEYRINGS_DIR).getPath();
+        String path = LicenseUtils.class.getResource(GlobalConstants.KEYRINGS_DIR).getPath();
         try {
             File f = new File(path + out);
-            f.createNewFile();
+            boolean created = f.createNewFile();
             OutputStream os = new FileOutputStream(f);
             os.write((new License().setLicense(new File(path + plain)).loadKey(path + secring, key).encodeLicense(password)).getBytes("utf-8"));
             os.close();
@@ -33,7 +28,7 @@ public class LicenseUtils {
     }
 
     public static void decode(String encoded, String plain, String pubring) {
-        String path = LicenseUtils.class.getResource(ResourcesConstants.KEYRINGS_DIR).getPath();
+        String path = LicenseUtils.class.getResource(GlobalConstants.KEYRINGS_DIR).getPath();
         try {
             final License license;
             if ((license = new License()).loadKeyRing(path + pubring, null).setLicenseEncodedFromFile(path + encoded).isVerified()) {
@@ -60,5 +55,17 @@ public class LicenseUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static String getEncodedLicense(String plain) {
+        String path = LicenseUtils.class.getResource(GlobalConstants.KEYRINGS_DIR).getPath();
+        try {
+            License lic = new License();
+            lic.setLicense(plain);
+            return lic.loadKey(path + GlobalConstants.GPG_SECRING_FILE, GlobalConstants.GPG_KEY).encodeLicense(GlobalConstants.GPG_PASSWORD);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

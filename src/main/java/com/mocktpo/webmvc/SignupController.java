@@ -14,11 +14,9 @@ public class SignupController {
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public ModelAndView showSignupView() {
-        logger.debug("{} accessed.", this.getClass().getSimpleName());
-
+        logger.debug("{}.{}() accessed.", this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
         ModelAndView mv = new ModelAndView();
         mv.setViewName("signup");
-
         return mv;
     }
 }

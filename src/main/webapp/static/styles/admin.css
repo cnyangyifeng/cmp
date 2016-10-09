@@ -153,11 +153,21 @@ a:hover {
 }
 
 .worksheet .ui.table .with-min-width {
-    min-width: 160px;
+    width: 160px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.worksheet .ui.table .email-label {
+    width: 240px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .worksheet .ui.table .with-min-action-width {
-    min-width: 120px;
+    width: 120px;
 }
 
 .worksheet .ui.table tfoot.hidden {
@@ -196,4 +206,10 @@ a:hover {
 
 .filter .ui.vertical.menu .level.three.item {
     padding-left: 4.5em;
+}
+
+/* Input */
+
+.ui.input.long-input {
+    width: 360px;
 }

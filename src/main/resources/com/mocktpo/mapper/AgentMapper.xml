@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mocktpo.mapper.AgentMapper">
+
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+
+    <select id="find" resultType="Agent">
+        SELECT
+        CMP_AGENT.CMP_AGENT_ID AS agentId,
+        CMP_AGENT.CMP_AGENT_NAME AS agentName,
+        CMP_AGENT.CMP_MOBILE AS mobile,
+        CMP_AGENT.CMP_EMAIL AS email,
+        CMP_AGENT.CMP_PASSWORD AS password
+        FROM CMP_AGENT
+    </select>
+
+    <select id="findByMobileAndPassword" resultType="Agent">
+        SELECT
+        CMP_AGENT.CMP_AGENT_ID AS agentId,
+        CMP_AGENT.CMP_AGENT_NAME AS agentName,
+        CMP_AGENT.CMP_MOBILE AS mobile,
+        CMP_AGENT.CMP_EMAIL AS email,
+        CMP_AGENT.CMP_PASSWORD AS password
+        FROM CMP_AGENT
+        WHERE
+        CMP_AGENT.CMP_MOBILE = #{mobile}
+        AND CMP_AGENT.CMP_PASSWORD = #{password}
+    </select>
+
+    <insert id="create" parameterType="Agent">
+        INSERT
+        INTO CMP_AGENT (
+        CMP_AGENT.CMP_AGENT_NAME,
+        CMP_AGENT.CMP_MOBILE,
+        CMP_AGENT.CMP_EMAIL,
+        CMP_AGENT.CMP_PASSWORD
+        ) VALUES (
+        #{agentName},
+        #{mobile},
+        #{email},
+        #{password}
+        )
+    </insert>
+
+    <update id="update" parameterType="Agent">
+        UPDATE
+        CMP_AGENT
+        SET
+        CMP_AGENT.CMP_AGENT_NAME = #{agentName},
+        CMP_AGENT.CMP_MOBILE = #{mobile},
+        CMP_AGENT.CMP_EMAIL = #{email},
+        CMP_AGENT.CMP_PASSWORD = #{password}
+        WHERE
+        CMP_AGENT.CMP_AGENT_ID = #{agentId}
+    </update>
+
+    <delete id="deleteById">
+        DELETE
+        FROM CMP_AGENT
+        WHERE
+        CMP_AGENT.CMP_AGENT_ID = #{agentId}
+    </delete>
+
+</mapper>

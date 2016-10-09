@@ -1,16 +1,21 @@
 package com.mocktpo.domain;
 
+import com.mocktpo.util.constants.GlobalConstants;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class License {
+public class License implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private long licenseId;
-    private String appName;
-    private String edition;
-    private int majorVersion;
+    private String appName = GlobalConstants.APP_NAME;
+    private String edition = GlobalConstants.DEFAULT_EDITION;
+    private int majorVersion = GlobalConstants.MAJOR_VERSION;
     private String email;
     private String hardware;
-    private String validThrough;
+    private String validThrough = GlobalConstants.DEFAULT_VALID_THROUGH;
     private Date dateCreated;
     private Date dateUpdated;
 
@@ -84,5 +89,10 @@ public class License {
 
     public void setDateUpdated(Date dateUpdated) {
         this.dateUpdated = dateUpdated;
+    }
+
+    @Override
+    public String toString() {
+        return "{licenseId:" + this.getLicenseId() + ";appName:" + this.getAppName() + ";edition:" + this.getEdition() + ";majorVersion:" + this.getMajorVersion() + ";email:" + this.getEmail() + ";hardware:" + this.getHardware() + ";validThrough:" + this.getValidThrough() + ";dateCreated:" + this.getDateCreated() + ";dateUpdated:" + this.getDateUpdated() + "}";
     }
 }

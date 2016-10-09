@@ -54,9 +54,7 @@
         CMP_USER.CMP_GROUP_ID = #{groupId},
         CMP_USER.CMP_SERIAL_NUMBER = #{serialNumber}
         WHERE
-        <if test="userId != null">
-            CMP_USER.CMP_USER_ID = #{userId}
-        </if>
+        CMP_USER.CMP_USER_ID = #{userId}
     </update>
 
     <delete id="deleteByIds">
@@ -94,13 +92,13 @@
         LIMIT #{offset}, #{limit}
     </select>
 
-    <select id="findCount" resultType="int">
+    <select id="findCount" resultType="long">
         SELECT
         COUNT(*)
         FROM CMP_USER
     </select>
 
-    <select id="searchByNameCount" resultType="int">
+    <select id="searchByNameCount" resultType="long">
         SELECT
         COUNT(*)
         FROM CMP_USER, CMP_GROUP

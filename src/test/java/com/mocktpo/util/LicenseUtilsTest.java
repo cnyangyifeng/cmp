@@ -17,8 +17,13 @@ public class LicenseUtilsTest {
     @Test
     public void testDecode() {
         String encoded = "encoded.lic";
-        String plain = null;
         String pubring = "pubring.gpg";
-        LicenseUtils.decode(encoded, plain, pubring);
+        LicenseUtils.decode(encoded, null, pubring);
+    }
+
+    @Test
+    public void testGetEncodedLicense() {
+        String plain = "hello";
+        System.out.println(LicenseUtils.getEncodedLicense(plain));
     }
 }

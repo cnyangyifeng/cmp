@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mocktpo.mapper.AdminMapper">
+
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+
+    <select id="find" resultType="Admin">
+        SELECT
+        CMP_ADMIN.CMP_ADMIN_ID AS adminId,
+        CMP_ADMIN.CMP_ADMIN_NAME AS adminName,
+        CMP_ADMIN.CMP_MOBILE AS mobile,
+        CMP_ADMIN.CMP_PASSWORD AS password
+        FROM CMP_ADMIN
+    </select>
+
+    <insert id="create" parameterType="Admin">
+        INSERT
+        INTO CMP_ADMIN (
+        CMP_ADMIN.CMP_ADMIN_NAME,
+        CMP_ADMIN.CMP_MOBILE AS mobile,
+        CMP_ADMIN.CMP_PASSWORD
+        ) VALUES (
+        #{adminName},
+        #{mobile},
+        #{password}
+        )
+    </insert>
+
+    <update id="update" parameterType="Admin">
+        UPDATE
+        CMP_ADMIN
+        SET
+        CMP_ADMIN.CMP_ADMIN_NAME = #{adminName},
+        CMP_ADMIN.CMP_MOBILE = #{mobile},
+        CMP_ADMIN.CMP_PASSWORD = #{password}
+        WHERE
+        CMP_ADMIN.CMP_ADMIN_ID = #{adminId}
+    </update>
+
+    <delete id="deleteById">
+        DELETE
+        FROM CMP_ADMIN
+        WHERE
+        CMP_ADMIN.CMP_ADMIN_ID = #{adminId}
+    </delete>
+
+</mapper>

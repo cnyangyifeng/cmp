@@ -8,11 +8,14 @@ license.ready = function () {
 
     var
         $licenseIdInput = $('#license-id-input'),
-        $licenseNameInput = $('#license-name-input'),
-        $licenseNameMessageLabel = $('#license-name-message-label'),
-        $groupIdInput = $('#group-id-input'),
-        $serialNumberInput = $('#serial-number-input'),
-        $serialNumberMessageLabel = $('#serial-number-message-label'),
+        $appNameInput = $('#app-name-input'),
+        $editionInput = $('#edition-input'),
+        $majorVersionInput = $('#major-version-input'),
+        $emailInput = $('#email-input'),
+        $emailMessageLabel = $('#email-message-label'),
+        $hardwareInput = $('#hardware-input'),
+        $validThroughInput = $('#valid-through-input'),
+        $validThroughMessageLabel = $('#valid-through-message-label'),
         $saveButton = $('#save-button'),
 
         $preDeleteButton = $('#pre-delete-button'),
@@ -33,12 +36,15 @@ license.ready = function () {
         save: function () {
             var
                 licenseId = $licenseIdInput.val(),
-                licenseName = $licenseNameInput.val(),
-                groupId = $groupIdInput.val(),
-                serialNumber = $serialNumberInput.val()
+                appName = $appNameInput.val(),
+                edition = $editionInput.val(),
+                majorVersion = $majorVersionInput.val(),
+                email = $emailInput.val(),
+                hardware = $hardwareInput.val(),
+                validThrough = $validThroughInput.val()
                 ;
 
-            if (!handler.validateLicenseNameInput() || !handler.validateSerialNumberInput()) {
+            if (!handler.validateEmailInput() || !handler.validateValidThroughInput()) {
                 return;
             }
 
@@ -52,9 +58,12 @@ license.ready = function () {
                 contentType: 'application/json',
                 data: JSON.stringify({
                     licenseId: licenseId,
-                    licenseName: licenseName,
-                    groupId: groupId,
-                    serialNumber: serialNumber
+                    appName: appName,
+                    edition: edition,
+                    majorVersion: majorVersion,
+                    email: email,
+                    hardware: hardware,
+                    validThrough: validThrough
                 }),
                 timeout: 9000, // 9 seconds
 
@@ -78,41 +87,42 @@ license.ready = function () {
             });
         },
 
-        validateLicenseNameInput: function () {
+        validateEmailInput: function () {
             var
-                licenseName = $licenseNameInput.val().trim()
+                email = $emailInput.val().trim()
                 ;
 
-            if (licenseName.length == 0) {
-                $licenseNameMessageLabel
+            if (email.length == 0) {
+                $emailMessageLabel
                     .removeClass('hidden')
                     .text('不能为空')
                 ;
                 return false;
             }
 
-            if (licenseName.length > 10) {
-                $licenseNameMessageLabel
+            var reg = /\S+@\S+\.\S+/;
+            if (!reg.test(email)) {
+                $emailMessageLabel
                     .removeClass('hidden')
-                    .text('至多输入 10 个中英文字符')
+                    .text('必须为电子邮箱格式')
                 ;
                 return false;
             }
 
-            $licenseNameMessageLabel
+            $emailMessageLabel
                 .addClass('hidden')
                 .text('')
             ;
             return true;
         },
 
-        validateSerialNumberInput: function () {
+        validateValidThroughInput: function () {
             var
-                serialNumber = $serialNumberInput.val().trim()
+                validThrough = $validThroughInput.val().trim()
                 ;
 
-            if (serialNumber.length == 0) {
-                $serialNumberMessageLabel
+            if (validThrough.length == 0) {
+                $validThroughMessageLabel
                     .removeClass('hidden')
                     .text('不能为空')
                 ;
@@ -120,23 +130,23 @@ license.ready = function () {
             }
 
             var reg = /^[1-9]\d*$/;
-            if (!reg.test(serialNumber)) {
-                $serialNumberMessageLabel
+            if (!reg.test(validThrough)) {
+                $validThroughMessageLabel
                     .removeClass('hidden')
                     .text('必须为数字')
                 ;
                 return false;
             }
 
-            if (serialNumber.length > 4) {
-                $serialNumberMessageLabel
+            if (validThrough.length != 8) {
+                $validThroughMessageLabel
                     .removeClass('hidden')
-                    .text('至多输入 4 位数字')
+                    .text('只能输入 8 位数字')
                 ;
                 return false;
             }
 
-            $serialNumberMessageLabel
+            $validThroughMessageLabel
                 .addClass('hidden')
                 .text('')
             ;
@@ -212,12 +222,12 @@ license.ready = function () {
         })
     ;
 
-    $licenseNameInput
-        .on('blur', handler.validateLicenseNameInput)
+    $emailInput
+        .on('blur', handler.validateEmailInput)
     ;
 
-    $serialNumberInput
-        .on('blur', handler.validateSerialNumberInput)
+    $validThroughInput
+        .on('blur', handler.validateValidThroughInput)
     ;
 
     /* delete */
