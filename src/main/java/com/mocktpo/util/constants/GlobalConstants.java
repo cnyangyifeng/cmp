@@ -17,7 +17,7 @@ public interface GlobalConstants {
     String SMTP_HOST = "smtp.163.com";
     String SMTP_SENDER_EMAIL = "cnyangyifeng@163.com";
     String SMTP_SENDER_PASSWORD = "yyf262300@BJ";
-    String LICENSE_EMAIL_SUBJECT = "MockTPO License";
+    String LICENSE_EMAIL_SUBJECT = "MockTPO Activation Code";
 
     //====================
 

@@ -5,7 +5,7 @@ import com.mocktpo.domain.License;
 import com.mocktpo.service.LicenseService;
 import com.mocktpo.util.EmailUtils;
 import com.mocktpo.util.constants.GlobalConstants;
-import com.mocktpo.vo.RequireLicenseVo;
+import com.mocktpo.vo.RequireActivationVo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,7 +29,7 @@ public class LicenseApiController {
 
 
     @RequestMapping(value = "/api/licenses/require", method = RequestMethod.POST)
-    public ResponseEntity<Void> require(@RequestBody RequireLicenseVo vo) {
+    public ResponseEntity<Void> require(@RequestBody RequireActivationVo vo) {
         logger.debug("{}.{}() accessed.", this.getClass().getSimpleName(), Thread.currentThread().getStackTrace()[1].getMethodName());
         String email = vo.getEmail();
         String hardware = vo.getHardware();
@@ -42,11 +42,11 @@ public class LicenseApiController {
                 Date date = new Date();
                 lic.setDateUpdated(date);
                 service.update(lic);
-                EmailUtils.sendLicense(lic);
+                EmailUtils.sendActivationCode(lic);
                 return ResponseEntity.ok().build();
             } else {
                 if (licensedHardware.equals(hardware)) { // same hardware registered
-                    EmailUtils.sendLicense(lic);
+                    EmailUtils.sendActivationCode(lic);
                     return ResponseEntity.ok().build();
                 } else {
                     return ResponseEntity.status(HttpStatus.CONFLICT).build(); // different hardware registered

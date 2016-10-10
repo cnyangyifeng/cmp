@@ -2,7 +2,7 @@ package com.mocktpo.vo;
 
 import java.io.Serializable;
 
-public class RequireLicenseVo implements Serializable {
+public class RequireActivationVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

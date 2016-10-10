@@ -16,7 +16,7 @@ public class EmailUtils {
     private EmailUtils() {
     }
 
-    public static void sendLicense(License lic) {
+    public static void sendActivationCode(License lic) {
         JavaMailSenderImpl sender = new JavaMailSenderImpl();
         sender.setHost(GlobalConstants.SMTP_HOST);
         sender.setUsername(GlobalConstants.SMTP_SENDER_EMAIL);
@@ -28,19 +28,20 @@ public class EmailUtils {
             helper.setBcc(GlobalConstants.SMTP_SENDER_EMAIL);
             helper.setTo(lic.getEmail());
             helper.setSubject(GlobalConstants.LICENSE_EMAIL_SUBJECT);
-            helper.setText(getEncodedLicense(lic));
+            helper.setText(getActivationCode(lic));
+            helper.setPriority(1);
         } catch (Exception e) {
             e.printStackTrace();
         }
         sender.send(message);
     }
 
-    private static String getEncodedLicense(License lic) {
-        String plain = preparePlainLicense(lic);
-        return LicenseUtils.getEncodedLicense(plain);
+    private static String getActivationCode(License lic) {
+        String plain = prepareActivationCode(lic);
+        return ActivationCodeUtils.encode(plain);
     }
 
-    private static String preparePlainLicense(License lic) {
+    private static String prepareActivationCode(License lic) {
         StringBuilder sb = new StringBuilder();
         sb.append("app_name=");
         sb.append(lic.getAppName());
