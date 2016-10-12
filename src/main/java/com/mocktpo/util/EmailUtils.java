@@ -2,6 +2,7 @@ package com.mocktpo.util;
 
 import com.mocktpo.domain.License;
 import com.mocktpo.util.constants.GlobalConstants;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -29,7 +30,6 @@ public class EmailUtils {
             helper.setTo(lic.getEmail());
             helper.setSubject(GlobalConstants.LICENSE_EMAIL_SUBJECT);
             helper.setText(getActivationCode(lic));
-            helper.setPriority(1);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -38,7 +38,10 @@ public class EmailUtils {
 
     private static String getActivationCode(License lic) {
         String plain = prepareActivationCode(lic);
-        return ActivationCodeUtils.encode(plain);
+        String encoded = ActivationCodeUtils.encode(plain);
+        encoded = StringUtils.replace(encoded, "-----BEGIN PGP MESSAGE-----\nVersion: BCPG v1.52", "-----BEGIN MOCKTPO ACTIVATION CODE-----");
+        encoded = StringUtils.replace(encoded, "-----END PGP MESSAGE-----", "\n-----END MOCKTPO ACTIVATION CODE-----");
+        return encoded;
     }
 
     private static String prepareActivationCode(License lic) {

@@ -14,10 +14,10 @@ public interface GlobalConstants {
 
     //====================
 
-    String SMTP_HOST = "smtp.163.com";
-    String SMTP_SENDER_EMAIL = "cnyangyifeng@163.com";
-    String SMTP_SENDER_PASSWORD = "yyf262300@BJ";
-    String LICENSE_EMAIL_SUBJECT = "MockTPO Activation Code";
+    String SMTP_HOST = "smtp.mxhichina.com";
+    String SMTP_SENDER_EMAIL = "sales@cnmengma.com";
+    String SMTP_SENDER_PASSWORD = "Yyf19851204";
+    String LICENSE_EMAIL_SUBJECT = "YOUR MOCKTPO ACTIVATION CODE";
 
     //====================
 
